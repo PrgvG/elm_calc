@@ -1,0 +1,108 @@
+.App {
+  position: relative;
+  width: 80vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  background-color: rgb(150, 150, 150);
+  flex-direction: column;
+  min-width: 500px;
+  min-height: 800px;
+}
+
+.App-header {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: 80vw;
+  height: 10%;
+  min-width: 500px;
+  text-align: center;
+  background: gray;
+  border-bottom: 1px solid rgb(100, 100, 100);
+  box-shadow: 8px 8px 8px 5px rgba(34, 60, 80, 0.2);
+}
+
+.App-body {
+  display: flex;
+  position: relative;
+  top: 10vh;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Body-container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(185, 185, 185);
+  box-shadow: 8px 8px 8px 5px rgba(34, 60, 80, 0.2);
+  padding: 10px;
+}
+.Body-result {
+  position: absolute;
+  background-color: rgb(220, 220, 220);
+  box-shadow: 8px 8px 8px 5px rgba(34, 60, 80, 0.2);
+  padding: 10px;
+  width: 250px;
+}
+.App-footer {
+  position: relative;
+  clear: both;
+  bottom: 0;
+  height: 10%;
+  width: 100%;
+  margin-top: auto;
+  text-align: center;
+  background: gray;
+  border-top: 1px solid rgb(100, 100, 100);
+}
+
+.Container-radio {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.Container-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ShaftInput {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+legend {
+  text-transform: lowercase;
+}
+
+input {
+  outline: none;
+}
+.Red {
+  color: red;
+}
+
+.Radio-input {
+  margin: 5px;
+}
+
+@media (max-width: 1270px) {
+  .Body-result {
+    position: relative;
+  }
+}
+@media (min-width: 1271px) {
+  .Body-result {
+    left: 100%;
+  }
+}
