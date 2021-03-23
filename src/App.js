@@ -22,19 +22,19 @@ function App() {
   const [speed, setSpeed] = useState(0);
   const [toggle, setToggle] = useState(true);
 
-  const a = 2100 + 40 + 1000 + speed
-  const b = 2100 + 40 + 700 + 100 + 121 + 100 + speed
-  const A_HEAD = 3300
-  const B_HEAD = 3400
-  const C_HEAD = 4100
-  const D_HEAD = 3900
-  const A_PIT = 1050
-  const D_PIT = 1400
-  const HEAD_AND_PIT = 4500
-  const MIN_CAR_BRACKET = 35
-  const MAX_CAR_BRACKET = 245
-  const MIN_CWT_BRACKET = 230
-  const MAX_CWT_BRACKET = 550
+  const a = 2100 + 40 + 1000 + speed;
+  const b = 2100 + 40 + 700 + 100 + 121 + 100 + speed;
+  const A_HEAD = 3300;
+  const B_HEAD = 3400;
+  const C_HEAD = 4100;
+  const D_HEAD = 3900;
+  const A_PIT = 1050;
+  const D_PIT = 1400;
+  const HEAD_AND_PIT = 4500;
+  const MIN_CAR_BRACKET = 35;
+  const MAX_CAR_BRACKET = 245;
+  const MIN_CWT_BRACKET = 230;
+  const MAX_CWT_BRACKET = 550;
 
   const redHead = (n) => {
     const tmp = shaft === "mr" ? A_HEAD : height > 40 ? C_HEAD : B_HEAD;
@@ -50,7 +50,7 @@ function App() {
         <form className="Body-container">
           <div className="Container-radio">
             <Input set={setShaft} arr={shaftArr} title="Тип шахты" />
-            <Input set={setLoad} arr={loadArr} title="Грузоподъемность" />
+            <Input set={setLoad} arr={loadArr.filter(it => shaft === 'mr' ? it.value !== 1000 : it.value )} title="Грузоподъемность" />
             <Input set={setSpeed} arr={speedArr} title="Скорость" />
             <Input set={setHeight} arr={heightArr} title="Высота подъема" />
           </div>
@@ -82,30 +82,30 @@ function App() {
           <div className="Body-result">
             <fieldset>
               <legend>Результаты</legend>
-              <ResultList
-                title="Противовес сзади:"
-                arr={cabinArr.filter(it => it.load == load)}
-                w1={MIN_CAR_BRACKET * 2}
-                w2={MAX_CAR_BRACKET * 2}
-                d1={470}
-                SW={SW}
-                SD={SD}
-                load={load}
-                doors={doorArr}
-              />
               {shaft === "mr" && (
                 <ResultList
-                  title="Противовес сбоку:"
-                  arr={cabinArr.filter(it => it.load == load)}
-                  w1={MIN_CAR_BRACKET + MIN_CWT_BRACKET}
-                  w2={MAX_CAR_BRACKET + MAX_CWT_BRACKET}
-                  d1={255}
+                  title="Противовес сзади:"
+                  arr={cabinArr.filter((it) => it.load == load)}
+                  w1={MIN_CAR_BRACKET * 2}
+                  w2={MAX_CAR_BRACKET * 2}
+                  d1={470}
                   SW={SW}
                   SD={SD}
                   load={load}
                   doors={doorArr}
                 />
               )}
+              <ResultList
+                title="Противовес сбоку:"
+                arr={cabinArr.filter((it) => it.load == load)}
+                w1={MIN_CAR_BRACKET + MIN_CWT_BRACKET}
+                w2={MAX_CAR_BRACKET + MAX_CWT_BRACKET}
+                d1={255}
+                SW={SW}
+                SD={SD}
+                load={load}
+                doors={doorArr}
+              />
             </fieldset>
           </div>
         )}
