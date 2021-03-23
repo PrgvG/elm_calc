@@ -1,11 +1,25 @@
-import React from 'react';
+import React from "react";
 
 function Input(props) {
-    return (
-        <div>
-            
-        </div>
-    );
+  return (
+    <fieldset>
+      <legend>{props.title}</legend>
+      {props.arr.map((it, i) => {
+        return (
+          <div className="Radio-input" key={i}>
+            <input
+              type={it.type}
+              id={it.id}
+              name={it.name}
+              value={it.value}
+              onClick={(e) => props.set(e.target.value)}
+            />
+            <label for={it.id}>{it.label}</label>
+          </div>
+        );
+      })}
+    </fieldset>
+  );
 }
 
 export default Input;
