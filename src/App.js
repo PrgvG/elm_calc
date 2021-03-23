@@ -30,14 +30,21 @@ function App() {
   const D_HEAD = 3900;
   const A_PIT = 1050;
   const D_PIT = 1400;
-  const HEAD_AND_PIT = 4500;
+  const HEAD_AND_PIT = 4450;
   const MIN_CAR_BRACKET = 35;
   const MAX_CAR_BRACKET = 245;
   const MIN_CWT_BRACKET = 230;
   const MAX_CWT_BRACKET = 550;
 
   const redHead = (n) => {
-    const tmp = shaft === "mr" ? A_HEAD : height > 40 ? C_HEAD : B_HEAD;
+    const tmp =
+      shaft === "mr"
+        ? A_HEAD
+        : load === '1000'
+        ? D_HEAD
+        : height >= 40
+        ? C_HEAD
+        : B_HEAD;
     return n < tmp && n > 0 ? "ShaftInput Red" : "ShaftInput";
   };
   const redPit = (n) => {
@@ -50,7 +57,13 @@ function App() {
         <form className="Body-container">
           <div className="Container-radio">
             <Input set={setShaft} arr={shaftArr} title="Тип шахты" />
-            <Input set={setLoad} arr={loadArr.filter(it => shaft === 'mr' ? it.value !== 1000 : it.value )} title="Грузоподъемность" />
+            <Input
+              set={setLoad}
+              arr={loadArr.filter((it) =>
+                shaft === "mr" ? it.value !== 1000 : it.value
+              )}
+              title="Грузоподъемность"
+            />
             <Input set={setSpeed} arr={speedArr} title="Скорость" />
             <Input set={setHeight} arr={heightArr} title="Высота подъема" />
           </div>
@@ -85,7 +98,7 @@ function App() {
               {shaft === "mr" && (
                 <ResultList
                   title="Противовес сзади:"
-                  arr={cabinArr.filter((it) => it.load == load)}
+                  arr={cabinArr.filter((it) => it.load === load)}
                   w1={MIN_CAR_BRACKET * 2}
                   w2={MAX_CAR_BRACKET * 2}
                   d1={470}
@@ -97,7 +110,7 @@ function App() {
               )}
               <ResultList
                 title="Противовес сбоку:"
-                arr={cabinArr.filter((it) => it.load == load)}
+                arr={cabinArr.filter((it) => it.load === load)}
                 w1={MIN_CAR_BRACKET + MIN_CWT_BRACKET}
                 w2={MAX_CAR_BRACKET + MAX_CWT_BRACKET}
                 d1={255}

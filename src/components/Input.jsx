@@ -1,6 +1,7 @@
 import React from "react";
 
 function Input(props) {
+  console.log(props);
   return (
     <fieldset>
       <legend>{props.title}</legend>
@@ -12,7 +13,7 @@ function Input(props) {
               id={it.id}
               name={it.name}
               value={it.value}
-              onClick={(e) => props.set(e.target.value)}
+              onClick={(e) => props.set(it.value)}
             />
             <label for={it.id}>{it.label}</label>
           </div>

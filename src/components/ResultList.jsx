@@ -1,6 +1,7 @@
 import React from "react";
 
 function ResultList(props) {
+  console.log(props)
   function guide(load) {
     return load === "400" ? 65 : load === "630" ? 62 : 75;
   }
