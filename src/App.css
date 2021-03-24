@@ -47,7 +47,8 @@ input {
   outline: none;
 }
 .Red {
-  color: red;
+  color: rgb(225, 0, 0);
+  font-weight: 650;
 }
 
 .Radio-input {

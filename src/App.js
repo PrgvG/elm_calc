@@ -45,7 +45,8 @@ function App() {
     return n < A_HEAD && n > 0 ? "ShaftInput Red" : "ShaftInput";
   };
   const redPit = (n) => {
-    if (shaft === "mr" && +n + +head < HEAD_AND_PIT) return "ShaftInput Red";
+    if (shaft === "mr" && +n + +head < HEAD_AND_PIT && +n !== 0 && +head !== 0)
+      return "ShaftInput Red";
     if (load === 1000)
       return n < D_PIT && n > 0 ? "ShaftInput Red" : "ShaftInput";
     return n < A_PIT && n > 0 ? "ShaftInput Red" : "ShaftInput";
@@ -82,7 +83,7 @@ function App() {
           </fieldset>
         </form>
         <form className="Sub_container">
-          <fieldset style={{height: '100%'}}>
+          <fieldset style={{ height: "100%" }}>
             <legend>Результаты</legend>
             {shaft === "mr" && (
               <ResultList
