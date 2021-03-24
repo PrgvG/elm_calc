@@ -1,7 +1,6 @@
 import React from "react";
 
 function Input(props) {
-  console.log(props);
   return (
     <fieldset>
       <legend>{props.title}</legend>

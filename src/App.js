@@ -37,17 +37,18 @@ function App() {
   const MAX_CWT_BRACKET = 550;
 
   const redHead = (n) => {
-    const tmp =
-      shaft === "mr"
-        ? A_HEAD
-        : load === '1000'
-        ? D_HEAD
-        : height >= 40
-        ? C_HEAD
-        : B_HEAD;
-    return n < tmp && n > 0 ? "ShaftInput Red" : "ShaftInput";
+    if (load === 1000)
+      return n < D_HEAD && n > 0 ? "ShaftInput Red" : "ShaftInput";
+    if (shaft !== "mr" && height >= 40)
+      return n < C_HEAD && n > 0 ? "ShaftInput Red" : "ShaftInput";
+    if (shaft !== "mr" && height <= 40)
+      return n < B_HEAD && n > 0 ? "ShaftInput Red" : "ShaftInput";
+    return n < A_HEAD && n > 0 ? "ShaftInput Red" : "ShaftInput";
   };
   const redPit = (n) => {
+    if (shaft === "mr" && +n + +head < HEAD_AND_PIT) return "ShaftInput Red";
+    if (load === 1000)
+      return n < D_PIT && n > 0 ? "ShaftInput Red" : "ShaftInput";
     return n < A_PIT && n > 0 ? "ShaftInput Red" : "ShaftInput";
   };
 
@@ -101,7 +102,8 @@ function App() {
                   arr={cabinArr.filter((it) => it.load === load)}
                   w1={MIN_CAR_BRACKET * 2}
                   w2={MAX_CAR_BRACKET * 2}
-                  d1={470}
+                  T2={560}
+                  C2={500}
                   SW={SW}
                   SD={SD}
                   load={load}
@@ -113,7 +115,8 @@ function App() {
                 arr={cabinArr.filter((it) => it.load === load)}
                 w1={MIN_CAR_BRACKET + MIN_CWT_BRACKET}
                 w2={MAX_CAR_BRACKET + MAX_CWT_BRACKET}
-                d1={255}
+                T2={380}
+                C2={320}
                 SW={SW}
                 SD={SD}
                 load={load}
