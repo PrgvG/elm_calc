@@ -41,8 +41,8 @@ function ResultList(props) {
         .map((it, i) => {
           if (filterDoors(props.doors, it.BG, it.CW, it.CD, guide(props.load)) !== "нету дверей")
           return (
-            <div key={i}>
-              {it.title} - {it.CW} x {it.CD} {"=> "}
+            <div className="Result" key={i}>
+              {it.title} ({it.CW}x{it.CD})<br />
               {filterDoors(props.doors, it.BG, it.CW, it.CD, guide(props.load))}
               <br />
             </div>

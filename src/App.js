@@ -20,7 +20,6 @@ function App() {
   const [shaft, setShaft] = useState("");
   const [load, setLoad] = useState(0);
   const [speed, setSpeed] = useState(0);
-  const [toggle, setToggle] = useState(true);
 
   const a = 2100 + 40 + 1000 + speed;
   const b = 2100 + 40 + 700 + 100 + 121 + 100 + speed;
@@ -54,28 +53,26 @@ function App() {
 
   return (
     <div className="App">
-      <div className="App-body">
-        <form className="Body-container">
-          <div className="Container-radio">
-            <Input set={setShaft} arr={shaftArr} title="Тип шахты" />
-            <Input
-              set={setLoad}
-              arr={loadArr.filter((it) =>
-                shaft === "mr" ? it.value !== 1000 : it.value
-              )}
-              title="Грузоподъемность"
-            />
-            <Input set={setSpeed} arr={speedArr} title="Скорость" />
-            <Input set={setHeight} arr={heightArr} title="Высота подъема" />
-          </div>
-          <fieldset className="Container-input">
-            <legend>Параметры шахты</legend>
+      <div className="Container">
+        <form className="Sub_container">
+          <Input set={setShaft} arr={shaftArr} title="Тип шахты" />
+          <Input
+            set={setLoad}
+            arr={loadArr.filter((it) =>
+              shaft === "mr" ? it.value !== 1000 : it.value
+            )}
+            title="Грузоподъемность"
+          />
+          <Input set={setSpeed} arr={speedArr} title="Скорость" />
+          <Input set={setHeight} arr={heightArr} title="Высота подъема" />
+          <fieldset>
+            <legend>Линейные размеры</legend>
             <InputText set={setSW} styles="ShaftInput" title="Ширина, мм: " />
             <InputText set={setSD} styles="ShaftInput" title="Глубина, мм: " />
             <InputText
               set={setHead}
               styles={redHead(head)}
-              title=" Последний этаж, мм: "
+              title="Оголовок, мм: "
             />
             <InputText
               set={setPit}
@@ -83,48 +80,38 @@ function App() {
               title="Приямок, мм: "
             />
           </fieldset>
-          <button
-            type="button"
-            onClick={(e) => {
-              setToggle(!toggle);
-            }}
-          >
-            toggle
-          </button>
         </form>
-        {toggle && (
-          <div className="Body-result">
-            <fieldset>
-              <legend>Результаты</legend>
-              {shaft === "mr" && (
-                <ResultList
-                  title="Противовес сзади:"
-                  arr={cabinArr.filter((it) => it.load === load)}
-                  w1={MIN_CAR_BRACKET * 2}
-                  w2={MAX_CAR_BRACKET * 2}
-                  T2={560}
-                  C2={500}
-                  SW={SW}
-                  SD={SD}
-                  load={load}
-                  doors={doorArr}
-                />
-              )}
+        <form className="Sub_container">
+          <fieldset style={{height: '100%'}}>
+            <legend>Результаты</legend>
+            {shaft === "mr" && (
               <ResultList
-                title="Противовес сбоку:"
+                title="Противовес сзади:"
                 arr={cabinArr.filter((it) => it.load === load)}
-                w1={MIN_CAR_BRACKET + MIN_CWT_BRACKET}
-                w2={MAX_CAR_BRACKET + MAX_CWT_BRACKET}
-                T2={380}
-                C2={320}
+                w1={MIN_CAR_BRACKET * 2}
+                w2={MAX_CAR_BRACKET * 2}
+                T2={560}
+                C2={500}
                 SW={SW}
                 SD={SD}
                 load={load}
                 doors={doorArr}
               />
-            </fieldset>
-          </div>
-        )}
+            )}
+            <ResultList
+              title="Противовес сбоку:"
+              arr={cabinArr.filter((it) => it.load === load)}
+              w1={MIN_CAR_BRACKET + MIN_CWT_BRACKET}
+              w2={MAX_CAR_BRACKET + MAX_CWT_BRACKET}
+              T2={380}
+              C2={320}
+              SW={SW}
+              SD={SD}
+              load={load}
+              doors={doorArr}
+            />
+          </fieldset>
+        </form>
       </div>
     </div>
   );

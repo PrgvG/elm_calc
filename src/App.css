@@ -1,77 +1,26 @@
 .App {
-  position: relative;
-  width: 80vw;
+  width: 100vw;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  background-color: rgb(150, 150, 150);
-  flex-direction: column;
-  min-width: 500px;
-  min-height: 800px;
+  display: grid;
+  place-items: center;
 }
 
-.App-header {
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  width: 80vw;
-  height: 10%;
-  min-width: 500px;
-  text-align: center;
-  background: gray;
-  border-bottom: 1px solid rgb(100, 100, 100);
-  box-shadow: 8px 8px 8px 5px rgba(34, 60, 80, 0.2);
-}
-
-.App-body {
-  display: flex;
-  position: relative;
-  margin: auto;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.Body-container {
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(185, 185, 185);
-  box-shadow: 8px 8px 8px 5px rgba(34, 60, 80, 0.2);
-  padding: 10px;
-}
-.Body-result {
-  position: absolute;
-  background-color: rgb(220, 220, 220);
-  box-shadow: 8px 8px 8px 5px rgba(34, 60, 80, 0.2);
-  padding: 10px;
-  width: 400px;
-}
-.App-footer {
-  position: relative;
-  clear: both;
-  bottom: 0;
-  height: 10%;
-  width: 100%;
-  margin-top: auto;
-  text-align: center;
-  background: gray;
-  border-top: 1px solid rgb(100, 100, 100);
-}
-
-.Container-radio {
+.Container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  box-shadow: 8px 8px 8px 5px rgba(34, 60, 80, 0.2);
+  background-color: rgb(228, 228, 228);
+  box-sizing: content-box;
 }
 
-.Container-input {
+.Sub_container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  padding: 10px;
+  width: 225px;
 }
 
 .ShaftInput {
@@ -80,8 +29,18 @@
   justify-content: space-between;
 }
 
+.Result {
+  margin-top: 10px;
+}
+
+fieldset {
+  border: 2px solid rgb(138, 0, 0);
+  border-radius: 7px;
+}
 legend {
   text-transform: lowercase;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 input {
@@ -92,16 +51,18 @@ input {
 }
 
 .Radio-input {
-  margin: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
-@media (max-width: 1270px) {
-  .Body-result {
-    position: relative;
-  }
-}
-@media (min-width: 1271px) {
-  .Body-result {
-    left: 100%;
+@media (max-width: 500px) {
+  .Container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    box-shadow: 8px 8px 8px 5px rgba(34, 60, 80, 0.2);
+    background-color: rgb(228, 228, 228);
   }
 }
