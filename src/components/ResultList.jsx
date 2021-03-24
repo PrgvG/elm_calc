@@ -34,8 +34,8 @@ function ResultList(props) {
       {props.arr
         .filter(
           (it) =>
-            it.CW <= props.SW - props.w1 - guide(props.load) * 2 &&
-            it.CW >= props.SW - props.w2 - guide(props.load) * 2 &&
+            it.BG <= props.SW - props.w1 - guide(props.load) * 2 &&
+            it.BG >= props.SW - props.w2 - guide(props.load) * 2 &&
             it.CD <= props.SD - props.C2
         )
         .map((it, i) => {
