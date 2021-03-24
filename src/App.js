@@ -21,12 +21,10 @@ function App() {
   const [load, setLoad] = useState(0);
   const [speed, setSpeed] = useState(0);
 
-  const a = 2100 + 40 + 1000 + speed;
-  const b = 2100 + 40 + 700 + 100 + 121 + 100 + speed;
-  const A_HEAD = 3300;
-  const B_HEAD = 3400;
-  const C_HEAD = 4100;
-  const D_HEAD = 3900;
+  const A_HEAD = 2950 + speed;
+  const B_HEAD = 3050 + speed;
+  const C_HEAD = 3750 + speed;
+  const D_HEAD = 3550 + speed;
   const A_PIT = 1050;
   const D_PIT = 1400;
   const HEAD_AND_PIT = 4450;
@@ -38,9 +36,9 @@ function App() {
   const redHead = (n) => {
     if (load === 1000)
       return n < D_HEAD && n > 0 ? "ShaftInput Red" : "ShaftInput";
-    if (shaft !== "mr" && height >= 40)
+    if (shaft !== "mr" && height > 40)
       return n < C_HEAD && n > 0 ? "ShaftInput Red" : "ShaftInput";
-    if (shaft !== "mr" && height <= 40)
+    if (shaft !== "mr" && height < 40)
       return n < B_HEAD && n > 0 ? "ShaftInput Red" : "ShaftInput";
     return n < A_HEAD && n > 0 ? "ShaftInput Red" : "ShaftInput";
   };
@@ -51,23 +49,13 @@ function App() {
       return n < D_PIT && n > 0 ? "ShaftInput Red" : "ShaftInput";
     return n < A_PIT && n > 0 ? "ShaftInput Red" : "ShaftInput";
   };
-
+  console.log(typeof SD, typeof SW);
   return (
     <div className="App">
       <div className="Container">
         <form className="Sub_container">
-          <Input set={setShaft} arr={shaftArr} title="Тип шахты" />
-          <Input
-            set={setLoad}
-            arr={loadArr.filter((it) =>
-              shaft === "mr" ? it.value !== 1000 : it.value
-            )}
-            title="Грузоподъемность"
-          />
-          <Input set={setSpeed} arr={speedArr} title="Скорость" />
-          <Input set={setHeight} arr={heightArr} title="Высота подъема" />
           <fieldset>
-            <legend>Линейные размеры</legend>
+            <legend>Шахта</legend>
             <InputText set={setSW} styles="ShaftInput" title="Ширина, мм: " />
             <InputText set={setSD} styles="ShaftInput" title="Глубина, мм: " />
             <InputText
@@ -81,11 +69,21 @@ function App() {
               title="Приямок, мм: "
             />
           </fieldset>
+          <Input set={setShaft} arr={shaftArr} title="Тип" />
+          <Input
+            set={setLoad}
+            arr={loadArr.filter((it) =>
+              shaft === "mr" ? it.value !== 1000 : it.value
+            )}
+            title="Грузоподъемность"
+          />
+          <Input set={setSpeed} arr={speedArr} title="Скорость" />
+          <Input set={setHeight} arr={heightArr} title="Высота подъема" />
         </form>
         <form className="Sub_container">
           <fieldset style={{ height: "100%" }}>
             <legend>Результаты</legend>
-            {shaft === "mr" && (
+            {shaft === "mr" && SD != 0 && SW != 0 && (
               <ResultList
                 title="Противовес сзади:"
                 arr={cabinArr.filter((it) => it.load === load)}
@@ -99,18 +97,20 @@ function App() {
                 doors={doorArr}
               />
             )}
-            <ResultList
-              title="Противовес сбоку:"
-              arr={cabinArr.filter((it) => it.load === load)}
-              w1={MIN_CAR_BRACKET + MIN_CWT_BRACKET}
-              w2={MAX_CAR_BRACKET + MAX_CWT_BRACKET}
-              T2={380}
-              C2={320}
-              SW={SW}
-              SD={SD}
-              load={load}
-              doors={doorArr}
-            />
+            {SD != 0 && SW != 0 && (
+              <ResultList
+                title="Противовес сбоку:"
+                arr={cabinArr.filter((it) => it.load === load)}
+                w1={MIN_CAR_BRACKET + MIN_CWT_BRACKET}
+                w2={MAX_CAR_BRACKET + MAX_CWT_BRACKET}
+                T2={380}
+                C2={320}
+                SW={SW}
+                SD={SD}
+                load={load}
+                doors={doorArr}
+              />
+            )}
           </fieldset>
         </form>
       </div>

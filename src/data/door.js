@@ -8,7 +8,7 @@ const doorArr = [
   { DW: 1100, fullWidth: 1695, type: "TO" },
   { DW: 1200, fullWidth: 1845, type: "TO" },
   { DW: 650, fullWidth: 1360, type: "CO" },
-  { DW: 700, fullWidth: 1360, type: "CO" },
+  { DW: 700, fullWidth: 1460, type: "CO" },
   { DW: 800, fullWidth: 1660, type: "CO" },
   { DW: 900, fullWidth: 1860, type: "CO" },
   { DW: 1000, fullWidth: 2060, type: "CO" },

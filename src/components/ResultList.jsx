@@ -21,8 +21,7 @@ function ResultList(props) {
             (it.fullWidth / 2 + 15 <= 230 + load + 50 + (1 / 2) * it.DW) >=
             it.fullWidth + 15
         );
-      if (props.title === "Противовес сзади:")
-        return it.type === "CO" && props.SW >= it.fullWidth + 30;
+      return it.type === "CO" && props.SW >= it.fullWidth + 30;
     });
     return result[result.length - 1]
       ? `${result[result.length - 1].type}: ${result[result.length - 1].DW}`
@@ -39,7 +38,11 @@ function ResultList(props) {
             it.CD <= props.SD - props.C2
         )
         .map((it, i) => {
-          if (filterDoors(props.doors, it.BG, it.CW, it.CD, guide(props.load)) !== "нету дверей")
+          if (
+            filterDoors(props.doors, it.BG, it.CW, it.CD, guide(props.load)) ===
+            "нету дверей"
+          )
+            return null;
           return (
             <div className="Result" key={i}>
               {it.title} ({it.CW}x{it.CD})<br />
