@@ -34,10 +34,11 @@ function App() {
   const MAX_CAR_BRACKET = 245;
   const MIN_CWT_BRACKET = 230;
   const MAX_CWT_BRACKET = 550;
+  const BACK = 0;
 
   const PORTAL_DEPTH = deepen ? 20 : 55;
-  const C2 = through ? PORTAL_DEPTH + 380 : PORTAL_DEPTH + 265;
-  const T2 = through ? PORTAL_DEPTH + 440 : PORTAL_DEPTH + 325;
+  const C2 = through ? PORTAL_DEPTH * 2 + 380 : PORTAL_DEPTH + 265;
+  const T2 = through ? PORTAL_DEPTH * 2 + 440 : PORTAL_DEPTH + 325;
 
   const redHead = (n) => {
     if (load === 1000)
