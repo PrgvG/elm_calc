@@ -8,20 +8,20 @@ function ResultList(props) {
     let result = doorArr.filter((it) => {
       if (props.SD >= CD + props.T2) {
         return (
-          it.type === "TO" &&
+          it.type === "T2" &&
           it.DW <= CW - 100 &&
           it.fullWidth <= props.SW - 35 - load - (BG - CW) / 2 - 50 - 15
         );
       }
       if (props.title === "Противовес сбоку:")
         return (
-          it.type === "CO" &&
+          it.type === "C2" &&
           it.fullWidth / 2 + 15 <= 230 + load + 50 + (1 / 2) * it.DW &&
           props.SW -
             (it.fullWidth / 2 + 15 <= 230 + load + 50 + (1 / 2) * it.DW) >=
             it.fullWidth + 15
         );
-      return it.type === "CO" && props.SW >= it.fullWidth + 30;
+      return it.type === "C2" && props.SW >= it.fullWidth + 30;
     });
     return result[result.length - 1]
       ? `${result[result.length - 1].type}: ${result[result.length - 1].DW}`
