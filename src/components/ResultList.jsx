@@ -13,14 +13,14 @@ function ResultList(props) {
           it.fullWidth <= props.SW - 35 - load - (BG - CW) / 2 - 50 - 15
         );
       }
-      if (props.title === "Противовес сбоку:")
+      if (props.title === "Противовес сбоку:") {
+        const AXIS_TO_WALL = 230 + load + (BG - CW) / 2 + 50 + it.DW / 2;
         return (
           it.type === "C2" &&
-          it.fullWidth / 2 + 15 <= 230 + load + 50 + (1 / 2) * it.DW &&
-          props.SW -
-            (it.fullWidth / 2 + 15 <= 230 + load + 50 + (1 / 2) * it.DW) >=
-            it.fullWidth + 15
+          it.fullWidth / 2 + 15 <= AXIS_TO_WALL &&
+          it.fullWidth / 2 + 15 <= props.SW - AXIS_TO_WALL
         );
+      }
       return it.type === "C2" && props.SW >= it.fullWidth + 30;
     });
     return result[result.length - 1]
