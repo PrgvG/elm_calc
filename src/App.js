@@ -93,16 +93,20 @@ function App() {
               />
             </div>
           </fieldset>
-          <Input set={setShaft} arr={shaftArr} title="Тип" />
+          <Input set={setShaft} sta="" arr={shaftArr} title="Тип" />
           <Input
             set={setLoad}
-            arr={loadArr.filter((it) =>
-              shaft === "mr" ? it.value !== 1000 : it.value
-            )}
+            sta={shaft === 'mr' ? "disable" : ""}
+            arr={loadArr}
             title="Грузоподъемность"
           />
-          <Input set={setSpeed} arr={speedArr} title="Скорость" />
-          <Input set={setHeight} arr={heightArr} title="Высота подъема" />
+          <Input set={setSpeed} sta="" arr={speedArr} title="Скорость" />
+          <Input
+            set={setHeight}
+            sta=""
+            arr={heightArr}
+            title="Высота подъема"
+          />
         </form>
         <form className="Sub_container">
           <fieldset style={{ height: "100%" }}>

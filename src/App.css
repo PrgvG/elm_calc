@@ -11,10 +11,8 @@
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  box-shadow: 8px 8px 8px 5px rgba(34, 60, 80, 0.2);
   border: 1px solid rgb(150, 150, 150);
-  /* background-color: rgb(228, 228, 228); */
-  /* box-sizing: content-box; */
+  box-shadow: 8px 8px 8px 5px rgba(34, 60, 80, 0.2);
 }
 
 .Sub_container {
@@ -36,18 +34,11 @@
 
 fieldset {
   transition: 0.4s;
-  /* border: 2px solid rgb(138, 0, 0);
-  border-radius: 7px;
-  border: 1px solid rgb(150, 150, 150); */
 }
 
 fieldset:hover{
-  border: 2px solid rgb(138, 0, 0);
+  border: 2px solid rgb(145, 0, 0);
 }
-  /* box-shadow: 4px 4px 8px 5px rgba(34, 60, 80, 0.2); */
-/* fieldset:hover legend{
-  opacity: 0;
-} */
 
 legend {
   text-transform: lowercase;
@@ -57,7 +48,10 @@ legend {
 
 input {
   outline: none;
+  border: none;
+  border-bottom: 1px solid rgb(100, 100, 100);
 }
+
 .Red {
   color: rgb(225, 0, 0);
   font-weight: 650;
@@ -78,4 +72,35 @@ input {
     box-shadow: 8px 8px 8px 5px rgba(34, 60, 80, 0.2);
     background-color: rgb(228, 228, 228);
   }
+}
+
+.form_radio_btn {
+	display: flex;
+  flex-direction: column;
+}
+
+.form_radio_btn input[type=radio] {
+	display: none;
+}
+
+.form_radio_btn label {
+	display: inline-block;
+	cursor: pointer;
+	padding: 0px 10px;
+	line-height: 30px;
+	border: 1px solid #999;
+}
+
+.form_radio_btn input[type=radio]:checked + label {
+  border: 2px solid rgb(145, 0, 0);
+}
+
+.form_radio_btn label:hover {
+	color: rgb(145, 0, 0);
+  background-color: rgb(235, 235, 235);
+}
+
+.form_radio_btn input[type=radio]:disabled + label {
+	background: #efefef;
+	color: #666;
 }
