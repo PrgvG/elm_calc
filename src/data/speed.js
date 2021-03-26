@@ -1,25 +1,25 @@
-const sqrOfSpeed = (n) => 0.035 * n ** 2
+const sqrOfSpeed = (n) => Math.round((35 * n ** 2) / 100) / 1000;
 
 const speedArr = [
   {
     type: "radio",
     id: "speed1",
     name: "speed",
-    value: sqrOfSpeed(1),
+    value: sqrOfSpeed(10),
     label: "1.0м/с",
   },
   {
     type: "radio",
     id: "speed2",
     name: "speed",
-    value: sqrOfSpeed(1.6),
+    value: sqrOfSpeed(16),
     label: "1.6м/с",
   },
   {
     type: "radio",
     id: "speed3",
     name: "speed",
-    value: sqrOfSpeed(2),
+    value: sqrOfSpeed(20),
     label: "2.0м/с",
   },
 ];
