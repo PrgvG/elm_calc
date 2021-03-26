@@ -34,7 +34,7 @@ function App() {
   const MAX_CAR_BRACKET = 245;
   const MIN_CWT_BRACKET = 230;
   const MAX_CWT_BRACKET = 550;
-  const BACK = 0;
+  const BACK = through ? 35 : 330;
 
   const PORTAL_DEPTH = deepen ? 20 : 55;
   const C2 = through ? PORTAL_DEPTH * 2 + 380 : PORTAL_DEPTH + 265;
@@ -56,6 +56,9 @@ function App() {
       return n < D_PIT && n > 0 ? "ShaftInput Red" : "ShaftInput";
     return n < A_PIT && n > 0 ? "ShaftInput Red" : "ShaftInput";
   };
+  function guide(load) {
+    return load === 400 ? 65 : load === 630 ? 62 : 75;
+  }
   return (
     <div className="App">
       <div className="Container">
@@ -96,7 +99,7 @@ function App() {
           <Input set={setShaft} sta="" arr={shaftArr} title="Тип" />
           <Input
             set={setLoad}
-            sta={shaft === 'mr' ? "disable" : ""}
+            sta={shaft === "mr" ? "disable" : ""}
             arr={loadArr}
             title="Грузоподъемность"
           />
@@ -117,14 +120,17 @@ function App() {
               through !== true && (
                 <ResultList
                   title="Противовес сзади:"
-                  arr={cabinArr.filter((it) => it.load === load)}
+                  arr={cabinArr.filter(
+                    (it) => it.load === load && it.type === "normal"
+                  )}
                   w1={MIN_CAR_BRACKET * 2}
                   w2={MAX_CAR_BRACKET * 2}
                   T2={T2 + 180}
                   C2={C2 + 180}
                   SW={SW}
                   SD={SD}
-                  load={load}
+                  back={BACK}
+                  load={guide(load)}
                   doors={doorArr}
                 />
               )}
@@ -143,7 +149,8 @@ function App() {
                 C2={C2}
                 SW={SW}
                 SD={SD}
-                load={load}
+                back={BACK}
+                load={guide(load)}
                 doors={doorArr}
               />
             )}
