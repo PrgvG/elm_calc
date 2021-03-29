@@ -2,6 +2,8 @@ import "./App.css";
 import React, { useState } from "react";
 import Input from "./components/Input.jsx";
 import InputText from "./components/InputText.jsx";
+import InputBoolean from "./components/InputBoolean.jsx";
+
 import ResultList from "./components/ResultList.jsx";
 
 import shaftArr from "./data/shaft.js";
@@ -23,10 +25,10 @@ function App() {
   const [deepen, setDeepen] = useState(false);
   const [through, setThrough] = useState(false);
 
-  const A_HEAD = 2950 + speed;
-  const B_HEAD = 3050 + speed;
-  const C_HEAD = 3750 + speed;
-  const D_HEAD = 3550 + speed;
+  const A_HEAD = 2950 + 100 + 121 + 100 + speed;
+  const B_HEAD = 3050 + 100 + 121 + 100 + speed;
+  const C_HEAD = 3750 + 100 + 121 + 100 + speed;
+  const D_HEAD = 3550 + 100 + 121 + 100 + speed;
   const A_PIT = 1050;
   const D_PIT = 1400;
   const HEAD_AND_PIT = 4450;
@@ -36,10 +38,11 @@ function App() {
   const MAX_CWT_BRACKET = 550;
   const BACK = through ? 35 : 330;
 
-  const PORTAL_DEPTH = deepen ? 20 : 55;
-  const C2 = through ? PORTAL_DEPTH * 2 + 380 : PORTAL_DEPTH + 265;
-  const T2 = through ? PORTAL_DEPTH * 2 + 440 : PORTAL_DEPTH + 325;
+  const PORTAL_DEPTH = deepen ? 20 : 55; // меняем размер, если можно утопить
+  const C2 = through ? PORTAL_DEPTH * 2 + 380 : PORTAL_DEPTH + 265; // выставляем минимальный размер ДШ для обычной и для проходной кабины, центральное открывание
+  const T2 = through ? PORTAL_DEPTH * 2 + 440 : PORTAL_DEPTH + 325; // выставляем минимальный размер ДШ для обычной и для проходной кабины, телескопическое открывание
 
+  // условие при котором оголовок будет подсвечен красным
   const redHead = (n) => {
     if (load === 1000)
       return n < D_HEAD && n > 0 ? "ShaftInput Red" : "ShaftInput";
@@ -49,52 +52,82 @@ function App() {
       return n < B_HEAD && n > 0 ? "ShaftInput Red" : "ShaftInput";
     return n < A_HEAD && n > 0 ? "ShaftInput Red" : "ShaftInput";
   };
+
+  // условие при котором приямок будет подсвечен красным
   const redPit = (n) => {
-    if (shaft === "mr" && +n + +head < HEAD_AND_PIT && +n !== 0 && +head !== 0)
+    if (shaft === "mr" && n + head < HEAD_AND_PIT && n !== 0 && head !== 0)
       return "ShaftInput Red";
     if (load === 1000)
       return n < D_PIT && n > 0 ? "ShaftInput Red" : "ShaftInput";
     return n < A_PIT && n > 0 ? "ShaftInput Red" : "ShaftInput";
   };
+
+  // направляющая от г/п
   function guide(load) {
     return load === 400 ? 65 : load === 630 ? 62 : 75;
   }
+
+  // отфильтруем массив кабин по типу купе и по размерам шахты
+  function cabinType(arr, minWidth, maxWidth) {
+    return arr
+      .filter((it) => {
+        if (through) {
+          return it.load === load && it.type === "through";
+        }
+        return it.load === load && it.type === "normal";
+      })
+      .filter(
+        (it) =>
+          it.BG <= SW - minWidth - guide(load) * 2 &&
+          it.BG >= SW - maxWidth - guide(load) * 2 &&
+          it.CD <= SD - C2
+      );
+  }
+
   return (
     <div className="App">
       <div className="Container">
         <form className="Sub_container">
           <fieldset>
             <legend>Шахта</legend>
-            <InputText set={setSW} styles="ShaftInput" title="Ширина, мм: " />
-            <InputText set={setSD} styles="ShaftInput" title="Глубина, мм: " />
+            <InputText
+              set={setSW}
+              styles="ShaftInput"
+              title="Ширина, мм:"
+              type="number"
+            />
+            <InputText
+              set={setSD}
+              styles="ShaftInput"
+              title="Глубина, мм:"
+              type="number"
+            />
             <InputText
               set={setHead}
               styles={redHead(head)}
-              title="Оголовок, мм: "
-              type=""
+              title="Оголовок, мм:"
+              type="number"
             />
             <InputText
               set={setPit}
               styles={redPit(pit)}
-              title="Приямок, мм: "
-              type=""
+              title="Приямок, мм:"
+              type="number"
             />
-            <div className="ShaftInput">
-              Заглубить ДШ
-              <input
-                type="checkbox"
-                style={{ width: 50 }}
-                onChange={() => setDeepen(!deepen)}
-              />
-            </div>
-            <div className="ShaftInput">
-              Проходная
-              <input
-                type="checkbox"
-                style={{ width: 50 }}
-                onChange={() => setThrough(!through)}
-              />
-            </div>
+            <InputBoolean
+              set={setDeepen}
+              value={deepen}
+              styles="ShaftInput"
+              title="Заглубить ДШ"
+              type="checkbox"
+            />
+            <InputBoolean
+              set={setThrough}
+              value={through}
+              styles="ShaftInput"
+              title="Проходная"
+              type="checkbox"
+            />
           </fieldset>
           <Input set={setShaft} sta="" arr={shaftArr} title="Тип" />
           <Input
@@ -114,44 +147,39 @@ function App() {
         <form className="Sub_container">
           <fieldset style={{ height: "100%" }}>
             <legend>Результаты</legend>
-            {shaft === "mr" &&
+            {shaft !== "mrl" &&
               SD.length > 0 &&
               SW.length > 0 &&
               through !== true && (
                 <ResultList
                   title="Противовес сзади:"
-                  arr={cabinArr.filter(
-                    (it) => it.load === load && it.type === "normal"
+                  cabinArr={cabinType(
+                    cabinArr,
+                    MIN_CAR_BRACKET * 2,
+                    MAX_CAR_BRACKET * 2
                   )}
-                  w1={MIN_CAR_BRACKET * 2}
-                  w2={MAX_CAR_BRACKET * 2}
+                  doorArr={doorArr}
                   T2={T2 + 180}
-                  C2={C2 + 180}
                   SW={SW}
                   SD={SD}
                   back={BACK}
                   load={guide(load)}
-                  doors={doorArr}
                 />
               )}
             {SD.length > 0 && SW.length > 0 && (
               <ResultList
                 title="Противовес сбоку:"
-                arr={cabinArr.filter((it) => {
-                  if (through) {
-                    return it.load === load && it.type === "through";
-                  }
-                  return it.load === load && it.type === "normal";
-                })}
-                w1={MIN_CAR_BRACKET + MIN_CWT_BRACKET}
-                w2={MAX_CAR_BRACKET + MAX_CWT_BRACKET}
+                cabinArr={cabinType(
+                  cabinArr,
+                  MIN_CAR_BRACKET + MIN_CWT_BRACKET,
+                  MAX_CAR_BRACKET + MAX_CWT_BRACKET
+                )}
+                doorArr={doorArr}
                 T2={T2}
-                C2={C2}
                 SW={SW}
                 SD={SD}
                 back={BACK}
                 load={guide(load)}
-                doors={doorArr}
               />
             )}
           </fieldset>

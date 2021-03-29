@@ -12,7 +12,7 @@ function Input(props) {
               id={it.id}
               name={it.name}
               value={it.value}
-              onClick={(e) => props.set(it.value)}
+              onClick={() => props.set(it.value)}
               disabled={
                 props.sta === "disable" && it.value === 1000 ? true : false
               }

@@ -1,18 +1,16 @@
 import React from "react";
 
-function InputText(props) {
+function InputBoolean(props) {
   return (
     <div className={props.styles}>
       {props.title}
       <input
         type={props.type}
         style={{ width: 50 }}
-        onChange={(e) => props.set(e.target.value)}
-        min="0"
-        step="50"
+        onChange={() => props.set(!props.value)}
       />
     </div>
   );
 }
 
-export default InputText;
+export default InputBoolean;
