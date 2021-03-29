@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Mission
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app was developed with two goals in mind. First of all, I need practice in writing code. Second, I wanted something that would help people at my current job. It will help you choose an elevator project based on the parameters of your shaft.
 
 ## Available Scripts
 
@@ -13,7 +13,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
-
-#### Mission
-
-This app was developed with two goals in mind. First of all, I need practice in writing code. Second, I wanted something that would help people at my current job. It will help you choose an elevator project based on the parameters of your shaft.
