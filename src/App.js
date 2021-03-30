@@ -36,11 +36,13 @@ function App() {
   const MAX_CAR_BRACKET = 245;
   const MIN_CWT_BRACKET = 230;
   const MAX_CWT_BRACKET = 550;
-  const BACK = through ? 35 : 330;
+  const NORMAL = "normal";
+  const THROUGH = "through";
 
   const PORTAL_DEPTH = deepen ? 20 : 55; // меняем размер, если можно утопить
+  const BACK = through ? (deepen ? 105 : 35) : 1000 + 55 - PORTAL_DEPTH;
   const C2 = through ? PORTAL_DEPTH * 2 + 380 : PORTAL_DEPTH + 265; // выставляем минимальный размер ДШ для обычной и для проходной кабины, центральное открывание
-  const T2 = through ? PORTAL_DEPTH * 2 + 440 : PORTAL_DEPTH + 325; // выставляем минимальный размер ДШ для обычной и для проходной кабины, телескопическое открывание
+  const T2 = C2 + 120;
 
   // условие при котором оголовок будет подсвечен красным
   const redHead = (n) => {
@@ -68,21 +70,60 @@ function App() {
   }
 
   // отфильтруем массив кабин по типу купе и по размерам шахты
-  function cabinType(arr, minWidth, maxWidth) {
-    return arr
-      .filter((it) => {
-        if (through) {
-          return it.load === load && it.type === "through";
-        }
-        return it.load === load && it.type === "normal";
-      })
-      .filter(
+  function cabinType(arr, SW, SD, C2, minWidth, maxWidth, guideWidth, type) {
+    if (type === "through") {
+      return arr.filter(
         (it) =>
-          it.BG <= SW - minWidth - guide(load) * 2 &&
-          it.BG >= SW - maxWidth - guide(load) * 2 &&
+          it.load === load &&
+          it.type === "through" &&
+          it.BG <= SW - minWidth - guideWidth * 2 &&
+          it.BG >= SW - maxWidth - guideWidth * 2 &&
           it.CD <= SD - C2
       );
+    }
+    if (type === "normal") {
+      return arr.filter(
+        (it) =>
+          it.load === load &&
+          it.type === "normal" &&
+          it.BG <= SW - minWidth - guideWidth * 2 &&
+          it.BG >= SW - maxWidth - guideWidth * 2 &&
+          it.CD <= SD - C2
+      );
+    }
   }
+
+  const cabinSideCWT = cabinType(
+    cabinArr,
+    SW,
+    SD,
+    C2,
+    MIN_CAR_BRACKET + MIN_CWT_BRACKET,
+    MAX_CAR_BRACKET + MAX_CWT_BRACKET,
+    guide(load),
+    NORMAL
+  );
+  const throughtCabinSideCWT = cabinType(
+    cabinArr,
+    SW,
+    SD,
+    C2,
+    MIN_CAR_BRACKET + MIN_CWT_BRACKET,
+    MAX_CAR_BRACKET + MAX_CWT_BRACKET,
+    guide(load),
+    THROUGH
+  );
+
+  const cabinBackCWT = cabinType(
+    cabinArr,
+    SW,
+    SD,
+    C2,
+    MIN_CAR_BRACKET + MIN_CAR_BRACKET,
+    MAX_CAR_BRACKET + MAX_CAR_BRACKET,
+    guide(load),
+    NORMAL
+  );
 
   return (
     <div className="App">
@@ -148,34 +189,41 @@ function App() {
           <fieldset style={{ height: "100%" }}>
             <legend>Результаты</legend>
             {shaft !== "mrl" &&
+              through === false &&
               SD.length > 0 &&
-              SW.length > 0 &&
-              through !== true && (
+              SW.length > 0 && (
                 <ResultList
                   title="Противовес сзади:"
-                  cabinArr={cabinType(
-                    cabinArr,
-                    MIN_CAR_BRACKET * 2,
-                    MAX_CAR_BRACKET * 2
-                  )}
+                  cabinArr={cabinBackCWT}
                   doorArr={doorArr}
-                  T2={T2 + 180}
+                  T2={T2 + 165}
+                  C2={C2 + 165}
                   SW={SW}
                   SD={SD}
-                  back={BACK}
+                  back={330}
                   load={guide(load)}
                 />
               )}
-            {SD.length > 0 && SW.length > 0 && (
+            {through === false && SD.length > 0 && SW.length > 0 && (
               <ResultList
                 title="Противовес сбоку:"
-                cabinArr={cabinType(
-                  cabinArr,
-                  MIN_CAR_BRACKET + MIN_CWT_BRACKET,
-                  MAX_CAR_BRACKET + MAX_CWT_BRACKET
-                )}
+                cabinArr={cabinSideCWT}
                 doorArr={doorArr}
                 T2={T2}
+                C2={C2}
+                SW={SW}
+                SD={SD}
+                back={BACK}
+                load={guide(load)}
+              />
+            )}
+            {through === true && SD.length > 0 && SW.length > 0 && (
+              <ResultList
+                title="Противовес сбоку:"
+                cabinArr={throughtCabinSideCWT}
+                doorArr={doorArr}
+                T2={T2}
+                C2={C2}
                 SW={SW}
                 SD={SD}
                 back={BACK}
