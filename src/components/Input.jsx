@@ -8,7 +8,7 @@ function Input(props) {
         return (
           <div className="filters-form__radio" key={i}>
             <input
-              type={it.type}
+              type="radio"
               id={it.id}
               name={it.name}
               value={it.value}

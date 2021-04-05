@@ -40,7 +40,7 @@ function ResultList({ title, cabinArr, T2, C2, SW, SD, back, load, doorArr }) {
         if (filteredDoorsArr === "нету дверей") return null;
         return (
           <ResultUnit
-            key={`${i}-${it.title}`}
+            key={`${i}`}
             title={it.title}
             CW={it.CW}
             CD={it.CD}

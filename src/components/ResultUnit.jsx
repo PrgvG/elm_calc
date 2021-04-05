@@ -1,8 +1,8 @@
 import React from "react";
 
-function ResultUnit({ key, title, CW, CD, DW }) {
+function ResultUnit({ title, CW, CD, DW }) {
   return (
-    <div className="Result" key={key}>
+    <div className="Result">
       {title} ({CW}x{CD})<br />
       {DW}
       <br />

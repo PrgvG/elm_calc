@@ -8,6 +8,8 @@ import InputNumber from "./components/InputNumber.jsx";
 import InputBoolean from "./components/InputBoolean.jsx";
 import ResultList from "./components/ResultList.jsx";
 
+import logo from './logo/Logo_text.png';
+
 import shaftType from "./data/shaft";
 import loadArr from "./data/load.js";
 import cabinArr from "./data/cabin.js";
@@ -33,11 +35,6 @@ function App() {
   const BACK = shaft.walkThrough ? 135 : 1000;
   const C2 = shaft.walkThrough ? shaft.wallToShaftDood * 2 + 360 : shaft.wallToShaftDood + 255; // выставляем минимальный размер ДШ для обычной и для проходной кабины, центральное открывание
   const T2 = C2 + (shaft.walkThrough ? 140 : 70);
-
-  // console.log( C2 + (shaft.walkThrough ? 140 : 70) )
-
-  // const C2_new = shaft.cwtToWall + shaft.cwtDepth + 315 // 50 + 25 + 35 + 55 + 35 + 55 + 60 
-
 
   // направляющая от г/п
   function guide(load) {
@@ -67,7 +64,6 @@ function App() {
         });
     }
   }
-
   
   const cabinSideCWT = cabinType(
     cabinArr,
@@ -101,13 +97,18 @@ function App() {
   );
   return (
     <div className="container">
+      <header className="container__header">
+        <a  href="https://euroliftmash.ru/" target="_blank" rel="noreferrer">
+          <img className="container__header--logo" src={logo} alt="elm logo"/>
+        </a>
+      </header>
       <form className="container__part">
         <InputNumber value={shaft} onChange={changeHandler} />
-        <InputBoolean value={shaft} onChange={boolChangeHandler} />
         <Input handler={typeChangeHandler} sta="" arr={shaftType} title="Тип" />
         <Input handler={changeHandler} sta={shaft.type === "mr" ? "disable" : ""} arr={loadArr} title="Грузоподъемность" />
         <Input handler={changeHandler} sta="" arr={speedArr} title="Скорость" />
         <Input handler={changeHandler} sta="" arr={heightArr} title="Высота подъема" />
+        <InputBoolean value={shaft} onChange={boolChangeHandler} />
       </form>
       <form className="container__part">
         <fieldset className="filter-form">

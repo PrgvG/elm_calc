@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updateWT, updateCWTdepth, updateCWTtoWall, updateWallToShaftDoor, updateGuide } from '../redux/reducers/shaft'  
 
 
-function InputBoolean({ onChange }) {
+function InputBoolean() {
 
   const dispatch = useDispatch()
   const shaft = useSelector((s) => s.shaft)  
@@ -24,10 +24,10 @@ function InputBoolean({ onChange }) {
 
   return (
     <fieldset className="filter-form">
-      <legend className="filters-form__legend">дополнения</legend>
-      {elements.map((it) => {
+      <legend className="filters-form__legend">Дополнительно</legend>
+      {elements.map((it, i) => {
         return (
-          <div className={`filters-form__btn ${it.equals ? "filters-form__btn--active" : ""}`} onClick={it.handler}>
+          <div className={`filters-form__btn ${it.equals ? "filters-form__btn--active" : ""}`} key={`${i}-${it.title}`} onClick={it.handler}>
             {it.title}
           </div>
         );
