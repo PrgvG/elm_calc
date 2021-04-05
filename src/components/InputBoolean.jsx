@@ -24,10 +24,10 @@ function InputBoolean() {
 
   return (
     <fieldset className="filter-form">
-      <legend className="filters-form__legend">Дополнительно</legend>
+      <legend className="filter-form__legend">Дополнительно</legend>
       {elements.map((it, i) => {
         return (
-          <div className={`filters-form__btn ${it.equals ? "filters-form__btn--active" : ""}`} key={`${i}-${it.title}`} onClick={it.handler}>
+          <div className={`filter-form__btn ${it.equals ? "filter-form__btn--active" : ""}`} key={`${i}-${it.title}`} onClick={it.handler}>
             {it.title}
           </div>
         );

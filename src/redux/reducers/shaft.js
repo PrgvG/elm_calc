@@ -1,6 +1,5 @@
 const UPDATE_SHAFT  = "UPDATE_SHAFT";
 const UPDATE_TYPE  = "UPDATE_TYPE";
-const UPDATE_BOOL  = "UPDATE_BOOL";
 const UPDATE_WT  = "UPDATE_WT";
 const UPDATE_CWT_DEPTH  = "UPDATE_CWT_DEPTH";
 const UPDATE_CWT_TO_WALL  = "UPDATE_CWT_TO_WALL";
@@ -33,11 +32,6 @@ export default (state = initialState, action) => {
       };
     }
     case UPDATE_TYPE: {
-      return {
-        ...state, [action.name]: action.value,
-      };
-    }
-    case UPDATE_BOOL: {
       return {
         ...state, [action.name]: action.value,
       };
@@ -78,9 +72,6 @@ export function updateShaft(name, value){
 }
 export function updateType(name, value){
   return { type: UPDATE_TYPE, name, value}
-}
-export function updateBool(name, value){
-  return { type: UPDATE_BOOL, name, value}
 }
 export function updateWT(name){
   return { type: UPDATE_WT, name}

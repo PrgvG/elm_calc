@@ -3,10 +3,10 @@ import React from "react";
 function Input(props) {
   return (
     <fieldset className="filter-form">
-      <legend className="filters-form__legend">{props.title}</legend>
+      <legend className="filter-form__legend">{props.title}</legend>
       {props.arr.map((it, i) => {
         return (
-          <div className="filters-form__radio" key={i}>
+          <div className="filter-form__radio" key={i}>
             <input
               type="radio"
               id={it.id}

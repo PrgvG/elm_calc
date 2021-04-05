@@ -28,7 +28,7 @@ function ResultList({ title, cabinArr, T2, C2, SW, SD, back, load, doorArr }) {
   }
   return (
     <fieldset className="filter-form">
-      <legend className="filters-form__legend">{title}</legend>
+      <legend className="filter-form__legend">{title}</legend>
       {cabinArr.map((it, i) => {
         const filteredDoorsArr = filterDoors(
           doorArr,
