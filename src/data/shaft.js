@@ -1,6 +1,6 @@
-const shaftArr = [
-  { type: "radio", id: "shaft1", name: "shaft", value: "mr", label: "МП" },
-  { type: "radio", id: "shaft2", name: "shaft", value: "mrl", label: "БМП" },
+const shaftType = [
+  { type: "radio", id: "shaft1", name: "type", value: "mr", label: "МП" },
+  { type: "radio", id: "shaft2", name: "type", value: "mrl", label: "БМП" },
 ];
 
-export default shaftArr;
+export default shaftType;

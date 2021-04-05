@@ -2,17 +2,17 @@ import React from "react";
 
 function Input(props) {
   return (
-    <fieldset>
-      <legend>{props.title}</legend>
+    <fieldset className="filter-form">
+      <legend className="filters-form__legend">{props.title}</legend>
       {props.arr.map((it, i) => {
         return (
-          <div className="form_radio_btn" key={i}>
+          <div className="filters-form__radio" key={i}>
             <input
               type={it.type}
               id={it.id}
               name={it.name}
               value={it.value}
-              onClick={() => props.set(it.value)}
+              onClick={props.handler}
               disabled={
                 props.sta === "disable" && it.value === 1000 ? true : false
               }

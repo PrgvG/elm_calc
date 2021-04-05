@@ -3,9 +3,10 @@ import React from "react";
 import ResultUnit from "./ResultUnit.jsx";
 
 function ResultList({ title, cabinArr, T2, C2, SW, SD, back, load, doorArr }) {
-  function filterDoors(doorArr, BG, CW, CD, load) {
-    const DW_TO_WALL = 35 + load + (BG - CW) / 2 + (CW === 810 ? 35 : 50);
 
+  function filterDoors(doorArr, BG, CW, CD, load) {
+    
+    const DW_TO_WALL = 35 + load + (BG - CW) / 2 + (CW === 810 ? 35 : 50);
     const result = doorArr.filter((it) => {
       if (SD >= CD + T2 && SD <= CD + T2 + back)
         return (
@@ -26,8 +27,8 @@ function ResultList({ title, cabinArr, T2, C2, SW, SD, back, load, doorArr }) {
       : "нету дверей";
   }
   return (
-    <fieldset>
-      <legend>{title}</legend>
+    <fieldset className="filter-form">
+      <legend className="filters-form__legend">{title}</legend>
       {cabinArr.map((it, i) => {
         const filteredDoorsArr = filterDoors(
           doorArr,
@@ -39,7 +40,7 @@ function ResultList({ title, cabinArr, T2, C2, SW, SD, back, load, doorArr }) {
         if (filteredDoorsArr === "нету дверей") return null;
         return (
           <ResultUnit
-            key={i}
+            key={`${i}-${it.title}`}
             title={it.title}
             CW={it.CW}
             CD={it.CD}

@@ -1,4 +1,4 @@
-const sqrOfSpeed = (n) => (35 * n ** 2) / 100; // Math.round((35 * n ** 2) / 10)
+const sqrOfSpeed = (n) => (35 * n ** 2) / 100; 
 
 const speedArr = [
   {
