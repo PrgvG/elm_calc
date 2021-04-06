@@ -3,11 +3,11 @@ import React from "react";
 import { useSelector, useDispatch } from 'react-redux'  
 import { updateShaft, updateType } from './redux/reducers/shaft'  
 
-import Input from "./components/Input.jsx";
-import InputNumber from "./components/InputNumber.jsx";
-import InputBoolean from "./components/InputBoolean.jsx";
-import ResultList from "./components/ResultList.jsx";
-import Header from "./components/Header";
+import Radio from "./components/containers/Radio.js";
+import Number from "./components/containers/Number.js";
+import Boolean from "./components/containers/Boolean.js";
+import ResultList from "./components/containers/ResultList.jsx";
+import Header from "./components/presentationals/Header";
 
 import shaftType from "./data/shaft";
 import loadArr from "./data/load.js";
@@ -37,7 +37,7 @@ function App() {
   const MAX_CWT_BRACKET = 550;
 
   const BACK = shaft.walkThrough ? 135 : 1000;
-  const C2 = shaft.walkThrough ? shaft.wallToShaftDood * 2 + 360 : shaft.wallToShaftDood + 255;
+  const C2 = shaft.walkThrough ? shaft.wallToShaftDood * 2 + 360 : shaft.wallToShaftDood + 205 + shaft.cwtToWall; // 180 75 
   const T2 = C2 + (shaft.walkThrough ? 140 : 70);
 
   const sideCWT = cabinArr.filter((it) =>
@@ -60,48 +60,40 @@ function App() {
   return (
     <div className="container">
       <Header />
-      {3371 + shaft.speed}
       <form className="container__part">
-        <InputNumber value={shaft} handler={changeHandler} />
-        <Input handler={typeChangeHandler} sta="" arr={shaftType} title="Тип" />
-        <Input handler={changeHandler} sta={shaft.type === "mr" ? "disable" : ""} arr={loadArr} title="Грузоподъемность" />
-        <Input handler={changeHandler} sta="" arr={speedArr} title="Скорость" />
-        <Input handler={changeHandler} sta="" arr={heightArr} title="Высота подъема" />
-        <InputBoolean />
+        <Number value={shaft} handler={changeHandler} />
+        <Radio handler={typeChangeHandler} sta="" arr={shaftType} title="Тип" />
+        <Boolean />
       </form>
       <form className="container__part">
-        <fieldset className="filter-form">
-          <legend className="filter-form__legend">Результаты</legend>
-          {shaft.type !== "mrl" &&
-            shaft.walkThrough === false &&
-            shaft.depth > 0 &&
-            shaft.width > 0 && (
-              <ResultList
-                title="Противовес сзади:"
-                cabinArr={cabinBackCWT}
-                doorArr={doorArr}
-                T2={T2}
-                C2={C2}
-                SW={shaft.width}
-                SD={shaft.depth}
-                back={330 + shaft.cwtDepth + shaft.cwtToWall}
-                load={guide(shaft.load)}
-              />
-            )}
-          {shaft.depth > 0 && shaft.width > 0 && (
-            <ResultList
-              title="Противовес сбоку:"
-              cabinArr={cabinSideCWT}
-              doorArr={doorArr}
-              T2={T2}
-              C2={C2}
-              SW={shaft.width}
-              SD={shaft.depth}
-              back={BACK}
-              load={guide(shaft.load)}
-            />
+        {shaft.type !== "mrl" && shaft.walkThrough === false && shaft.depth > 0 && shaft.width > 0 && (
+          <ResultList
+            title="Противовес сзади:"
+            cabinArr={cabinBackCWT}
+            doorArr={doorArr}
+            T2={T2}
+            C2={C2}
+            SW={shaft.width}
+            SD={shaft.depth}
+            minBack={50 + shaft.cwtDepth}
+            back={330}
+            load={guide(shaft.load)}
+          />
           )}
-        </fieldset>
+        {shaft.depth > 0 && shaft.width > 0 && (
+          <ResultList
+            title="Противовес сбоку:"
+            cabinArr={cabinSideCWT}
+            doorArr={doorArr}
+            T2={T2}
+            C2={C2}
+            SW={shaft.width}
+            SD={shaft.depth}
+            minBack={0}
+            back={BACK}
+            load={guide(shaft.load)}
+          />
+        )}
       </form>
     </div>
   );

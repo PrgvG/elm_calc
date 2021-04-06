@@ -25,8 +25,8 @@ const initialState = {
   cwtDepth: 180,
   guide: 75,
   cabin: {
-    cabinWidth: 0,
-    cabinDepth: 0,
+    width: 0,
+    depth: 0,
     doorWidth: 0,
     doorType: "C2",
   },

@@ -2,8 +2,7 @@ import React from "react";
 
 function Input(props) {
   return (
-    <fieldset className="filter-form">
-      <legend className="filter-form__legend">{props.title}</legend>
+    <div className="filter-form">
       {props.arr.map((it, i) => {
         return (
           <div className="filter-form__radio" key={i}>
@@ -21,7 +20,7 @@ function Input(props) {
           </div>
         );
       })}
-    </fieldset>
+    </div>
   );
 }
 
