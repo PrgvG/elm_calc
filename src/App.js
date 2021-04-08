@@ -1,7 +1,6 @@
 import "./App.css";
 import React from "react";
-import { useSelector, useDispatch } from 'react-redux'  
-import { updateShaft, updateType } from './redux/reducers/shaft'  
+import { useSelector } from 'react-redux'  
 
 import Radio from "./components/containers/Radio.js";
 import Number from "./components/containers/Number.js";
@@ -9,18 +8,11 @@ import Boolean from "./components/containers/Boolean.js";
 import ResultList from "./components/containers/ResultList.jsx";
 import Header from "./components/presentationals/Header";
 
-import shaftType from "./data/shaft";
-import loadArr from "./data/load.js";
 import cabinArr from "./data/cabin.js";
-import speedArr from "./data/speed.js";
-import heightArr from "./data/height.js";
 import doorArr from "./data/door.js";
 
 function App() {
   const shaft = useSelector((s) => s.shaft)  
-  const dispatch = useDispatch()  
-  const changeHandler = (e) => dispatch(updateShaft(e.target.name, e.target.value))
-  const typeChangeHandler = (e) => dispatch(updateType(e.target.name, e.target.value))
 
   function guide(load) {
     return load === 400 ? 65 : load === 630 ? shaft.guide : 75;
@@ -36,8 +28,8 @@ function App() {
   const MIN_CWT_BRACKET = shaft.cwtToWall + shaft.cwtDepth / 2 + 145;
   const MAX_CWT_BRACKET = 550;
 
-  const BACK = shaft.walkThrough ? 135 : 1000;
-  const C2 = shaft.walkThrough ? shaft.wallToShaftDood * 2 + 360 : shaft.wallToShaftDood + 205 + shaft.cwtToWall; // 180 75 
+  const BACK = shaft.walkThrough ? 70 : 1000;
+  const C2 = shaft.walkThrough ? shaft.wallToShaftDood * 2 + 360 : shaft.wallToShaftDood + 205 + shaft.cwtToWall;
   const T2 = C2 + (shaft.walkThrough ? 140 : 70);
 
   const sideCWT = cabinArr.filter((it) =>
@@ -51,19 +43,19 @@ function App() {
     it.load === shaft.load &&
     it.BG <= shaft.width - (MIN_CAR_BRACKET + MIN_CAR_BRACKET) - guide(shaft.load) * 2 &&
     it.BG >= shaft.width - (MAX_CAR_BRACKET + MAX_CAR_BRACKET) - guide(shaft.load) * 2 &&
-    it.CD <= shaft.depth - C2
+    it.CD <= shaft.depth - C2 - shaft.cwtDepth - 50
   )
 
   const cabinBackCWT = filterCabin(backCWT, shaft.walkThrough)
   const cabinSideCWT = filterCabin(sideCWT, shaft.walkThrough)
 
   return (
-    <div className="container">
+    <div className="wrapper">
       <Header />
-      <form className="container__part">
-        <Number value={shaft} handler={changeHandler} />
-        <Radio handler={typeChangeHandler} sta="" arr={shaftType} title="Тип" />
-        <Boolean />
+      <form className="filter">
+        <Number shaft={shaft} />
+        <Radio shaft={shaft} />
+        <Boolean shaft={shaft} />
       </form>
       <form className="container__part">
         {shaft.type !== "mrl" && shaft.walkThrough === false && shaft.depth > 0 && shaft.width > 0 && (

@@ -2,14 +2,15 @@ import React from "react";
 
 function NumInp({elements}) {
   return (
-    <div className="filter-form">
+    <div className="filter-form filter__grid1">
       {elements.map((it, i) => {
         return (
           <input
             key={`${i}-${it.name}`}
             type="Number"
-            className={it.style}
-            name={it.name}
+            className="filter-form__input"
+            style={it.warning}
+            name={it.title}
             placeholder={it.placeholder}
             onChange={it.handler}
             value={it.value > 0 ? it.value : ""}

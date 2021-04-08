@@ -1,40 +1,71 @@
 import React from "react";
 import NumInp from "../presentationals/NumInp";
-import { useDispatch } from 'react-redux'  
-import { updateShaft } from '../../redux/reducers/shaft'  
+import { useDispatch } from "react-redux";
+import { updateShaft } from "../../redux/reducers/shaft";
 
-function InputNumber({ value }) {
+function InputNumber({ shaft }) {
+  const A_HEAD = 3245 + shaft.speed;
+  const B_HEAD = 3245 + shaft.speed;
+  const C_HEAD = 3945 + shaft.speed;
+  const D_HEAD = 3745 + shaft.speed;
+  const A_PIT = 1050;
+  const D_PIT = 1400;
+  const HEAD_AND_PIT = 4450;
 
-  const dispatch = useDispatch()  
-  const changeHandler = (e) => dispatch(updateShaft(e.target.name, e.target.value))
+  const coloderRed = {
+    color: "rgb(200, 0, 0)",
+    borderBottom: "1px solid rgb(200, 0, 0)"
+  };
+  const coloderGreen = {
+    color: "rgb(0, 125, 0)",
+  };
+
+  const head = (n) => {
+    if (shaft.type === "mr" && n < A_HEAD && n > 0) return coloderRed;
+    if (shaft.type !== "mr" && n > 0) {
+      if (shaft.load === 1000 && n < D_HEAD) return coloderRed;
+      if (shaft.load !== 1000 && n < C_HEAD && shaft.height > 40) return coloderRed;
+      if (shaft.load !== 1000 && n < B_HEAD && shaft.height < 40) return coloderRed;
+    }
+    return n > 0 ? coloderGreen : null;
+  };
+
+  const pit = (n) => {
+    if (n + shaft.head < HEAD_AND_PIT && n > 0 && shaft.head > 0) return coloderRed;
+    if (shaft.load === 1000 && n < D_PIT && n > 0) return coloderRed;
+    if (n < A_PIT && n > 0) return coloderRed
+    return n > 0 ? coloderGreen : null;
+  };
+
+  const dispatch = useDispatch();
+  const changeHandler = (e) =>
+    dispatch(updateShaft(e.target.name, e.target.value));
   const elements = [
     {
-      name: "width",
-      placeholder: "ширина шахты",
-      value: value.width,
-      style: "filter-form__input",
+      title: "width",
+      placeholder: "ширина шахты, мм",
+      value: shaft.width,
       handler: changeHandler,
     },
     {
-      name: "depth",
-      placeholder: "глубина шахты",
-      value: value.depth,
-      style: "filter-form__input",
+      title: "depth",
+      placeholder: "глубина шахты, мм",
+      value: shaft.depth,
       handler: changeHandler,
     },
     {
-      name: "head",
-      placeholder: "последний этаж",
-      value: value.head,
-      style: "filter-form__input",
+      title: "head",
+      placeholder: "последний этаж, мм",
+      value: shaft.head,
       handler: changeHandler,
+      warning: head(shaft.head),
     },
     {
-      name: "pit",
-      placeholder: "приямок",
-      value: value.pit,
-      style: "filter-form__input",
+      title: "pit",
+      placeholder: "приямок, мм",
+      value: shaft.pit,
       handler: changeHandler,
+      warning: pit(shaft.pit),
     },
   ];
 

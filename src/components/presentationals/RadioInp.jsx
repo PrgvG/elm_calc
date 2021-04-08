@@ -5,7 +5,7 @@ function RadioInp({ elements }) {
     <>
       {elements.map((item, i) => {
         return (
-          <div className="filter-form" key={`${i}12312`}>
+          <div className={`filter-form filter__grid${i+2}`} key={`${i}`}>
             {item.array.map((it, i) => {
               return (
                 <div className="filter-form__radio" key={`${i-1}${it.name}`}>

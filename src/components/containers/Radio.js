@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateShaft, updateType } from "../../redux/reducers/shaft";
 
 import shaftType from "../../data/shaft";
@@ -8,9 +8,9 @@ import speedArr from "../../data/speed";
 import heightArr from "../../data/height";
 import RadioInp from "../presentationals/RadioInp";
 
-function Radio() {
+function Radio({ shaft }) {
+
   const dispatch = useDispatch();
-  const shaft = useSelector((s) => s.shaft);
   const changeHandler = (e) => dispatch(updateShaft(e.target.name, e.target.value));
   const typeChangeHandler = (e) => dispatch(updateType(e.target.name, e.target.value));
 

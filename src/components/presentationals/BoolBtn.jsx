@@ -2,7 +2,7 @@ import React from "react";
 
 function BoolBtn({ elements }) {
   return (
-    <div className="filter-form">
+    <div className="filter-form filter__grid6">
       {elements.map((it, i) => {
         return (
           <button
