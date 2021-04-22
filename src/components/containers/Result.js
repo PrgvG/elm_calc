@@ -47,7 +47,7 @@ function Result({ shaft }) {
       const doorFilteredByShaft = doorArr
         .filter(door => {
           return (
-            (door.type === "T2" && door.DW <= cabin.CW - 100 && shaft.width >= door.fullWidth + 15 - DW_TO_WALL && shaft.depth >= cabin.CD + T2 + minBack && shaft.depth <= cabin.CD + T2 + back) ||
+            (door.type === "T2" && door.DW <= cabin.CW - 100 && shaft.width >= door.fullWidth + 15 + DW_TO_WALL && shaft.depth >= cabin.CD + T2 + minBack && shaft.depth <= cabin.CD + T2 + back) ||
             (door.type === "C2" && door.DW <= cabin.CW - 100 && shaft.width >= door.fullWidth + 30 && shaft.depth >= cabin.CD + C2 + minBack && shaft.depth <= cabin.CD + C2 + back)
           )
         })
