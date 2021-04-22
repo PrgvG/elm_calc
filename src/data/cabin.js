@@ -40,6 +40,6 @@ const cabinArr = [
   { CW: 2100, CD: 1500, BG: 2180, load: 1000, title: "1004", type: "normal" },
   { CW: 2100, CD: 1400, BG: 2180, load: 1000, title: "1007", type: "normal" },
   { CW: 1600, CD: 2500, BG: 1680, load: 1000, title: "2001", type: "normal" },
-];
+]
 
-export default cabinArr;
+export default cabinArr

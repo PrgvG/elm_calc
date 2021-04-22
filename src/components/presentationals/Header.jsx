@@ -1,6 +1,6 @@
-import React from "react";
+import React from "react"
 
-import logo from "../../logo/Logo_text.png";
+import logo from "../../logo/Logo_text.png"
 
 function Header() {
   return (
@@ -9,7 +9,7 @@ function Header() {
         <img className="header--logo" src={logo} alt="elm logo" />
       </a>
     </header>
-  );
+  )
 }
 
-export default Header;
+export default Header

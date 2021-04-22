@@ -1,4 +1,4 @@
-const sqrOfSpeed = (n, buffer) => (35 * n ** 2) / 100 + buffer; 
+const sqrOfSpeed = (n, buffer) => (35 * n ** 2) / 100 + buffer
 
 const speedArr = [
   {
@@ -13,12 +13,12 @@ const speedArr = [
     value: sqrOfSpeed(16, 215),
     label: "1.6м/с",
   },
- /* {
+  {
     id: "speed3",
     name: "speed",
     value: sqrOfSpeed(20),
     label: "2.0м/с",
-  },*/
-];
+  },
+]
 
-export default speedArr;
+export default speedArr

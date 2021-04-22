@@ -1,14 +1,15 @@
-import React from "react";
+import React from "react"
+import "./Input.css"
 
-function NumInp({elements}) {
+function Input({ elements }) {
   return (
-    <div className="filter-form filter__grid1">
+    <div className="input-container">
       {elements.map((it, i) => {
         return (
           <input
             key={`${i}-${it.name}`}
             type="Number"
-            className="filter-form__input"
+            className="input"
             style={it.warning}
             name={it.title}
             placeholder={it.placeholder}
@@ -17,10 +18,10 @@ function NumInp({elements}) {
             min="0"
             step="50"
           />
-        );
+        )
       })}
     </div>
-  );
+  )
 }
 
-export default NumInp;
+export default Input

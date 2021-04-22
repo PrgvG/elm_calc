@@ -1,0 +1,35 @@
+.button-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  grid-area: 4 / 1 / 5 / 3;
+}
+.button {
+  border: none;
+  outline: none;
+  background: none;
+  box-shadow: 4px 4px 7px #bebebe, -4px -4px 7px #ffffff;
+  cursor: pointer;
+  margin: 0.5rem 0;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-weight: 500;
+  color: rgb(125, 125, 125);
+}
+.button--active {
+  box-shadow: inset 4px 4px 7px #bebebe, inset -4px -4px 7px #ffffff;
+  z-index: 1;
+}
+.button:hover {
+  background: rgb(230, 230, 230);
+  z-index: 2;
+}
+.button:disabled {
+  color: rgb(150, 150, 150);
+  box-shadow: none;
+  z-index: 1;
+  cursor: default;
+}
+.button:disabled:hover {
+  background: none;
+}
