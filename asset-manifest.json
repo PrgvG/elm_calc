@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/elm_calc/static/css/main.72200c8d.chunk.css",
+    "main.js": "/elm_calc/static/js/main.21120a84.chunk.js",
+    "main.js.map": "/elm_calc/static/js/main.21120a84.chunk.js.map",
+    "runtime-main.js": "/elm_calc/static/js/runtime-main.a8e41cdc.js",
+    "runtime-main.js.map": "/elm_calc/static/js/runtime-main.a8e41cdc.js.map",
+    "static/js/2.6efb9fa1.chunk.js": "/elm_calc/static/js/2.6efb9fa1.chunk.js",
+    "static/js/2.6efb9fa1.chunk.js.map": "/elm_calc/static/js/2.6efb9fa1.chunk.js.map",
+    "static/js/3.bacb7c8f.chunk.js": "/elm_calc/static/js/3.bacb7c8f.chunk.js",
+    "static/js/3.bacb7c8f.chunk.js.map": "/elm_calc/static/js/3.bacb7c8f.chunk.js.map",
+    "index.html": "/elm_calc/index.html",
+    "static/css/main.72200c8d.chunk.css.map": "/elm_calc/static/css/main.72200c8d.chunk.css.map",
+    "static/js/2.6efb9fa1.chunk.js.LICENSE.txt": "/elm_calc/static/js/2.6efb9fa1.chunk.js.LICENSE.txt",
+    "static/media/Logo_text.0a739669.png": "/elm_calc/static/media/Logo_text.0a739669.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a8e41cdc.js",
+    "static/js/2.6efb9fa1.chunk.js",
+    "static/css/main.72200c8d.chunk.css",
+    "static/js/main.21120a84.chunk.js"
+  ]
+}
