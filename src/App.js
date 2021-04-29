@@ -10,15 +10,16 @@ import Header from "./components/presentationals/Header"
 
 function App() {
   const shaft = useSelector(s => s.shaft)
+  const cwt = useSelector(s => s.counterWeight)
   return (
     <div className="wrapper">
       <Header />
       <form className="filters">
         <Number shaft={shaft} />
         <Switch shaft={shaft} />
-        <Boolean shaft={shaft} />
+        <Boolean shaft={shaft} cwt={cwt} />
       </form>
-      <Result shaft={shaft} />
+      <Result shaft={shaft} cwt={cwt} />
     </div>
   )
 }

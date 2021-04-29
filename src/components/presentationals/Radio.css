@@ -1,6 +1,7 @@
 .radio {
   display: flex;
-  margin: 0.5rem 0;
+  margin: 8px 0;
+  /* margin-bottom: 1rem; */
 }
 .radio__label {
   text-align: center;

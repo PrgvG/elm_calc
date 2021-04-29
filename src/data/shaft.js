@@ -1,6 +1,6 @@
 const shaftType = [
-  { id: "shaft1", name: "type", value: "mr", label: "МП" },
-  { id: "shaft2", name: "type", value: "mrl", label: "БМП" },
+  { id: "shaft1", name: "machineRoom", value: true, label: "МП" },
+  { id: "shaft2", name: "machineRoom", value: false, label: "БМП" },
 ]
 
 export default shaftType

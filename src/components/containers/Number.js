@@ -21,8 +21,8 @@ function InputNumber({ shaft }) {
   }
 
   const head = n => {
-    if (shaft.type === "mr" && n < A_HEAD && n > 0) return coloderRed
-    if (shaft.type !== "mr" && n > 0) {
+    if (shaft.machineRoom && n < A_HEAD && n > 0) return coloderRed
+    if (!shaft.machineRoom && n > 0) {
       if (shaft.load === 1000 && n < D_HEAD) return coloderRed
       if (shaft.load !== 1000 && n < C_HEAD && shaft.height > 40) return coloderRed
       if (shaft.load !== 1000 && n < B_HEAD && shaft.height < 40) return coloderRed
@@ -38,7 +38,7 @@ function InputNumber({ shaft }) {
   }
 
   const dispatch = useDispatch()
-  const changeHandler = e => dispatch(updateShaft(e.target.name, e.target.value))
+  const changeHandler = e => dispatch(updateShaft(e.target.name, Number(e.target.value)))
   const elements = [
     {
       title: "width",

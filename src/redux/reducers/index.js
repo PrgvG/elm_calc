@@ -1,8 +1,11 @@
-import { combineReducers } from 'redux'  
-import shaft from './shaft'  
+import { combineReducers } from "redux"
+import shaft from "./shaft"
+import counterWeight from "./counterWeight"
 
-const createRootReducer = () => combineReducers({
-    shaft
-})  
-  
+const createRootReducer = () =>
+  combineReducers({
+    shaft,
+    counterWeight,
+  })
+
 export default createRootReducer
