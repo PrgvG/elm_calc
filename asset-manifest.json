@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/elm_calc/static/css/main.72200c8d.chunk.css",
-    "main.js": "/elm_calc/static/js/main.78697747.chunk.js",
-    "main.js.map": "/elm_calc/static/js/main.78697747.chunk.js.map",
+    "main.css": "/elm_calc/static/css/main.f7e1d0f9.chunk.css",
+    "main.js": "/elm_calc/static/js/main.00bb3d24.chunk.js",
+    "main.js.map": "/elm_calc/static/js/main.00bb3d24.chunk.js.map",
     "runtime-main.js": "/elm_calc/static/js/runtime-main.7eae1895.js",
     "runtime-main.js.map": "/elm_calc/static/js/runtime-main.7eae1895.js.map",
     "static/js/2.fe8c8861.chunk.js": "/elm_calc/static/js/2.fe8c8861.chunk.js",
@@ -10,14 +10,14 @@
     "static/js/3.229484c6.chunk.js": "/elm_calc/static/js/3.229484c6.chunk.js",
     "static/js/3.229484c6.chunk.js.map": "/elm_calc/static/js/3.229484c6.chunk.js.map",
     "index.html": "/elm_calc/index.html",
-    "static/css/main.72200c8d.chunk.css.map": "/elm_calc/static/css/main.72200c8d.chunk.css.map",
+    "static/css/main.f7e1d0f9.chunk.css.map": "/elm_calc/static/css/main.f7e1d0f9.chunk.css.map",
     "static/js/2.fe8c8861.chunk.js.LICENSE.txt": "/elm_calc/static/js/2.fe8c8861.chunk.js.LICENSE.txt",
     "static/media/Logo_text.0a739669.png": "/elm_calc/static/media/Logo_text.0a739669.png"
   },
   "entrypoints": [
     "static/js/runtime-main.7eae1895.js",
     "static/js/2.fe8c8861.chunk.js",
-    "static/css/main.72200c8d.chunk.css",
-    "static/js/main.78697747.chunk.js"
+    "static/css/main.f7e1d0f9.chunk.css",
+    "static/js/main.00bb3d24.chunk.js"
   ]
 }
