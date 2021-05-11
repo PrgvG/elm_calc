@@ -1,7 +1,10 @@
+.result {
+  grid-area: 2 / 2 / 3 / 3;
+}
 .cards-container {
   display: flex;
   flex-direction: column;
-  border-radius: 15px;
+  border-radius: 0.5rem;
   padding: 0.5rem;
   margin: 0.5rem 0;
   box-shadow: inset 5px 5px 15px #bebebe, inset -5px -5px 15px #ffffff;
@@ -16,5 +19,9 @@
 }
 .card__title {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+}
+.card__body {
+  display: flex;
+  flex-direction: row;
 }

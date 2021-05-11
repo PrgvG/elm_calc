@@ -2,19 +2,18 @@ const UPDATE_SHAFT = "UPDATE_SHAFT"
 
 const initialState = {
   walkThrough: false,
-  machineRoomless: false,
-  type: "mr",
+  machineRoom: true,
   width: 0,
   depth: 0,
   head: 0,
   pit: 0,
-  height: 0,
-  speed: 0,
-  load: 0,
+  height: 39,
+  speed: 155,
+  load: 400,
   wallToShaftDood: 60,
   cwtToWall: 50,
   cwtDepth: 180,
-  guide: 75,
+  guide: 65,
 }
 
 // eslint-disable-next-line

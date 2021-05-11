@@ -5,6 +5,9 @@
   grid-area: 1 / 1 / 2 / 3;
 }
 .input {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
   background: none;
   outline: none;
   padding: 0.5rem 0;

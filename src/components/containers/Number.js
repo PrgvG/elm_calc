@@ -2,8 +2,9 @@ import React from "react"
 import Input from "../presentationals/Input"
 import { useDispatch } from "react-redux"
 import { updateShaft } from "../../redux/reducers/shaft"
+import { updateEntrance } from "../../redux/reducers/entrance"
 
-function InputNumber({ shaft }) {
+function InputNumber({ shaft, entrance }) {
   const A_HEAD = 3245 + shaft.speed
   const B_HEAD = 3245 + shaft.speed
   const C_HEAD = 3945 + shaft.speed
@@ -39,6 +40,7 @@ function InputNumber({ shaft }) {
 
   const dispatch = useDispatch()
   const changeHandler = e => dispatch(updateShaft(e.target.name, Number(e.target.value)))
+  const doorHandler = e => dispatch(updateEntrance(e.target.name, Number(e.target.value)))
   const elements = [
     {
       title: "width",
@@ -65,6 +67,18 @@ function InputNumber({ shaft }) {
       value: shaft.pit,
       handler: changeHandler,
       warning: pit(shaft.pit),
+    },
+    {
+      title: "toLeftCorner",
+      placeholder: "левый простенок, мм",
+      value: entrance.toLeftCorner,
+      handler: doorHandler,
+    },
+    {
+      title: "toRightCorner",
+      placeholder: "правый простенок, мм",
+      value: entrance.toRightCorner,
+      handler: doorHandler,
     },
   ]
 

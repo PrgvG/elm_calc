@@ -38,7 +38,7 @@ function Switch({ shaft }) {
       default:
         dispatch(updateShaft(e.target.name, true))
     }
-    dispatch(updateShaft("load", null))
+    if (shaft.load === 1000) dispatch(updateShaft("load", 630))
   }
 
   const elements = [

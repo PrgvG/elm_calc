@@ -15,13 +15,15 @@
   border-radius: 8px;
   font-weight: 500;
   color: rgb(125, 125, 125);
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
 }
 .button--active {
   box-shadow: inset 4px 4px 7px #bebebe, inset -4px -4px 7px #ffffff;
   z-index: 1;
 }
 .button:hover {
-  background: rgb(230, 230, 230);
+  background-color: rgb(230, 230, 230);
   z-index: 2;
 }
 .button:disabled {

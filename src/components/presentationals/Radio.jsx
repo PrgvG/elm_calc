@@ -6,7 +6,7 @@ function Radio({ elements }) {
     <>
       {elements.map((item, i) => {
         return (
-          <div key={`${i}`}>
+          <div key={`${i}`} className="radio_container">
             {item.array.map((it, i) => {
               return (
                 <div className="radio" key={`${i - 1}${it.name}`}>
